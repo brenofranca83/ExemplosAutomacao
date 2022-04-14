@@ -80,14 +80,6 @@ public class Funcionario {
 			else
 				salario = salarioBase - (salarioBase * 0.15f);
 
-		case Funcionario.TESTADOR:
-			
-			if(salarioBase >= 2000) 
-				salario = salarioBase - (salarioBase * 0.25f);
-			else
-				salario = salarioBase - (salarioBase * 0.15f);
-			break; 
-			
 		case Funcionario.GERENTE:
 			
 			if(salarioBase >= 5000) 
@@ -97,6 +89,14 @@ public class Funcionario {
 
 			break;
 
+		case Funcionario.TESTADOR:
+			
+			if(salarioBase >= 2000) 
+				salario = salarioBase - (salarioBase * 0.25f);
+			else
+				salario = salarioBase - (salarioBase * 0.15f);
+			break; 
+			
 		default:
 			throw new Exception("Cargo Indefinido!");
 		}
