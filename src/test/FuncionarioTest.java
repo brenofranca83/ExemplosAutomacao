@@ -17,7 +17,6 @@ class FuncionarioTest {
 	private static Funcionario funcA;
 	private static Funcionario funcB;
 	private static Funcionario funcC;
-	private static Funcionario funcD;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -26,7 +25,6 @@ class FuncionarioTest {
 		funcA = new Funcionario("Fulano de Tal", "fulano@company.com", 5000, Funcionario.DESENVOLVEDOR);
 		funcB = new Funcionario("Cicrano de Tel", "cicrano@company.com", 2500, Funcionario.GERENTE);
 		funcC = new Funcionario("Beltrano de Til", "beltrano@company.com", 550, Funcionario.TESTADOR);
-		funcD = new Funcionario("Yo de Tol", "yo@company.com", 4000, Funcionario.DBA);
 		
 		System.out.println("OK");
 	}
@@ -84,29 +82,5 @@ class FuncionarioTest {
 		}
 	}
 	
-	@Test
-	@Order(4)
-	void testSalarioDBAMaior2000() {
-
-		try {
-			assertEquals(funcD.calculaSalario(), 3000);
-		} catch (Exception e) {
-			System.out.println("Define o raio do cargo direito!");
-			e.printStackTrace();
-		}
-	}
-
-	@Test
-	@Order(5)
-	void testSalarioDBAMenor2000() {
-
-		try {
-			funcD.setSalarioBase(1000);
-			assertEquals(funcD.calculaSalario(), 850);
-		} catch (Exception e) {
-			System.out.println("Define o raio do cargo direito!");
-			e.printStackTrace();
-		}
-	}
 	
 }
