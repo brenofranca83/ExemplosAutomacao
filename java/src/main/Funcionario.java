@@ -79,6 +79,7 @@ public class Funcionario {
 				salario = salarioBase - (salarioBase * 0.25f);
 			else
 				salario = salarioBase - (salarioBase * 0.15f);
+			break;
 
 		case Funcionario.GERENTE:
 			
