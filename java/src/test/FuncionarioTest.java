@@ -17,6 +17,8 @@ class FuncionarioTest {
 	private static Funcionario funcA;
 	private static Funcionario funcB;
 	private static Funcionario funcC;
+	private static Funcionario funcD;
+	private static Funcionario funcE;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -25,7 +27,9 @@ class FuncionarioTest {
 		funcA = new Funcionario("Fulano de Tal", "fulano@company.com", 5000, Funcionario.DESENVOLVEDOR);
 		funcB = new Funcionario("Cicrano de Tel", "cicrano@company.com", 2500, Funcionario.GERENTE);
 		funcC = new Funcionario("Beltrano de Til", "beltrano@company.com", 550, Funcionario.TESTADOR);
-		
+		funcD = new Funcionario("Siltrano de Fil", "siltrano@company.com", 1000, Funcionario.DBA);
+		funcE = new Funcionario("Zicrano de Creu", "zicrano@company.com", 3000, Funcionario.DBA);
+
 		System.out.println("OK");
 	}
 
@@ -81,6 +85,115 @@ class FuncionarioTest {
 			//e.printStackTrace();
 		}
 	}
-	
-	
+
+	@Test
+	@Order(4)
+	void testFuncionarioDBAMenor2000() {
+
+		try {
+			assertEquals(funcD.calculaSalario(), 850);
+		} catch (Exception e) {
+			//e.printStackTrace();
+		}
+	}
+
+	@Test
+	@Order(4)
+	void testFuncionarioDBAMaior2000() {
+
+		try {
+			assertEquals(funcE.calculaSalario(), 2250);
+		} catch (Exception e) {
+			//e.printStackTrace();
+		}
+	}
+
+	@Test
+	@Order(5)
+	void testEmailValido() {
+
+		try {
+			assertTrue(funcA.validarEmail("fulano@company.com"), "E-mail válido deve retornar true");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	@Order(5)
+	void testEmailComPrefixoESufixo() {
+
+		try {
+			assertTrue(funcB.validarEmail("cicrano.silva@example.com"), "E-mail com prefixo e sufixo válidos deve retornar true");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	@Order(5)
+	void testEmailSemArroba() {
+
+		try {
+			assertFalse(funcC.validarEmail("beltrancompany.com"), "E-mail sem @ deve retornar false");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	@Order(5)
+	void testEmailVazio() {
+
+		try {
+			assertFalse(funcD.validarEmail(""), "E-mail vazio deve retornar false");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	@Order(5)
+	void testEmailApenasArroba() {
+
+		try {
+			assertFalse(funcE.validarEmail("@"), "E-mail contendo apenas @ deve retornar false");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	@Order(5)
+	void testEmailSemSufixo() {
+
+		try {
+			assertFalse(funcA.validarEmail("siltrano@"), "E-mail sem sufixo deve retornar false");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	@Order(5)
+	void testEmailSemPrefixo() {
+
+		try {
+			assertFalse(funcB.validarEmail("@company.com"), "E-mail sem prefixo deve retornar false");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	@Order(5)
+	void testEmailComMultiplasArrobas() {
+
+		try {
+			assertFalse(funcC.validarEmail("zicrano@company@com"), "E-mail com múltiplas @ deve retornar false");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }

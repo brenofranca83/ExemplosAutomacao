@@ -79,6 +79,7 @@ public class Funcionario {
 				salario = salarioBase - (salarioBase * 0.25f);
 			else
 				salario = salarioBase - (salarioBase * 0.15f);
+			break;
 
 		case Funcionario.GERENTE:
 			
@@ -102,6 +103,37 @@ public class Funcionario {
 		}
 		
 		return salario;
+	}
+	
+	public boolean validarEmail(String email) {
+		
+		// Verifica se a string é nula ou vazia
+		if (email == null || email.isEmpty()) {
+			return false;
+		}
+		
+		// Conta o número de @ no email
+		long countArroba = email.chars().filter(ch -> ch == '@').count();
+		
+		// Deve conter exatamente uma @
+		if (countArroba != 1) {
+			return false;
+		}
+		
+		// Obtém a posição do @
+		int posicaoArroba = email.indexOf('@');
+		
+		// Verifica se há prefixo (antes de @)
+		if (posicaoArroba == 0) {
+			return false;
+		}
+		
+		// Verifica se há sufixo (depois de @)
+		if (posicaoArroba == email.length() - 1) {
+			return false;
+		}
+		
+		return true;
 	}
 
 }
