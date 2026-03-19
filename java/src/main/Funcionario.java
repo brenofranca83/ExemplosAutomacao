@@ -79,6 +79,7 @@ public class Funcionario {
 				salario = salarioBase - (salarioBase * 0.25f);
 			else
 				salario = salarioBase - (salarioBase * 0.15f);
+			break;
 
 		case Funcionario.GERENTE:
 			
@@ -104,4 +105,8 @@ public class Funcionario {
 		return salario;
 	}
 
+	public boolean checaEmail() {
+		int posicaoArroba = this.email.indexOf("@");
+		return posicaoArroba > 0 && posicaoArroba < (this.email.length() - 1);
+	}
 }
